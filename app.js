@@ -2,45 +2,61 @@ const $addButton = document.querySelector('#add');
 const $cards = document.querySelector('.div-remove');
 const $titleInput = document.querySelector('#title');
 const $authorInput = document.querySelector('#author');
-let books = [];
 
-function Book(title, author) {
-  this.title = title;
-  this.author = author;
-}
+class Books {
+  constructor() {
+    this.books = [];
+    this.$removeButtons = null;
+    this.initializeRemoveButtons();
+  }
 
-function deleteBook() {
-  const $removeButtons = document.querySelectorAll('.remove-button');
-  $removeButtons.forEach((removeButton, index) => {
+  initializeRemoveButtons() {
+    this.$removeButtons = document.querySelectorAll('.remove-button');
+    this.$removeButtons.forEach((removeButton, index) => {
+      removeButton.addEventListener('click', () => {
+        this.deleteBook(index);
+        removeButton.parentNode.remove();
+      });
+    });
+  }
+
+  deleteBook(index) {
+    this.books.splice(index, 1);
+    localStorage.setItem('books', JSON.stringify(this.books));
+  }
+
+  addBook() {
+    const book = {
+      title: $titleInput.value,
+      author: $authorInput.value,
+    };
+    this.books.push(book);
+
+    const bookHTML = `
+      <div class="card-book">
+        <h3>${book.title}</h3>
+        <h3>${book.author}</h3>
+        <button class="remove-button">Remove</button>
+        <hr>
+      </div>
+    `;
+
+    $cards.insertAdjacentHTML('beforeend', bookHTML);
+    localStorage.setItem('books', JSON.stringify(this.books));
+
+    const lastIndex = this.books.length - 1;
+    const removeButton = $cards.querySelector('.remove-button:last-child');
     removeButton.addEventListener('click', () => {
-      books.splice(index, 1);
-      localStorage.setItem('books', JSON.stringify(books));
+      this.deleteBook(lastIndex);
       removeButton.parentNode.remove();
     });
-  });
+  }
 }
 
-function addBook() {
-  const book = new Book($titleInput.value, $authorInput.value);
-  books.push(book);
-
-  const bookHTML = `
-    <div class="card-book">
-      <h3>${book.title}</h3>
-      <h3>${book.author}</h3>
-      <button class="remove-button">Remove</button>
-      <hr>
-    </div>
-  `;
-
-  $cards.insertAdjacentHTML('beforeend', bookHTML);
-  localStorage.setItem('books', JSON.stringify(books));
-
-  deleteBook();
-}
+const myBooks = new Books();
 
 $addButton.addEventListener('click', () => {
-  addBook();
+  myBooks.addBook();
   $authorInput.value = '';
   $titleInput.value = '';
 });
@@ -49,8 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const booksSaved = JSON.parse(localStorage.getItem('books'));
 
   if (booksSaved) {
-    books = booksSaved;
-    const booksHTML = books.map((book) => `
+    myBooks.books = booksSaved;
+    const booksHTML = myBooks.books.map((book) => `
       <div class="card-book">
         <h3>${book.title}</h3>
         <h3>${book.author}</h3>
@@ -60,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
     `).join('');
 
     $cards.innerHTML = booksHTML;
-
-    deleteBook();
+    myBooks.initializeRemoveButtons();
   }
 });

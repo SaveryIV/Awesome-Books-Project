@@ -1,5 +1,5 @@
 const $addButton = document.querySelector('#add');
-const $remove = document.querySelector('.div-remove');
+const $cards = document.querySelector('.div-remove');
 const $titleInput = document.querySelector('#title');
 const $authorInput = document.querySelector('#author');
 let books = [];
@@ -7,6 +7,17 @@ let books = [];
 function Book(title, author) {
   this.title = title;
   this.author = author;
+}
+
+function deleteBook() {
+  const $removeButtons = document.querySelectorAll('.remove-button');
+  $removeButtons.forEach((removeButton, index) => {
+    removeButton.addEventListener('click', () => {
+      books.splice(index, 1);
+      localStorage.setItem('books', JSON.stringify(books));
+      removeButton.parentNode.remove();
+    });
+  });
 }
 
 function addBook() {
@@ -22,17 +33,10 @@ function addBook() {
     </div>
   `;
 
-  $remove.insertAdjacentHTML('beforeend', bookHTML);
+  $cards.insertAdjacentHTML('beforeend', bookHTML);
   localStorage.setItem('books', JSON.stringify(books));
 
-  const $removeButtons = document.querySelectorAll('.remove-button');
-  $removeButtons.forEach((removeButton, index) => {
-    removeButton.addEventListener('click', () => {
-      books.splice(index, 1);
-      localStorage.setItem('books', JSON.stringify(books));
-      removeButton.parentNode.remove();
-    });
-  });
+  deleteBook();
 }
 
 $addButton.addEventListener('click', () => {
@@ -55,15 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `).join('');
 
-    $remove.innerHTML = booksHTML;
+    $cards.innerHTML = booksHTML;
 
-    const $removeButtons = document.querySelectorAll('.remove-button');
-    $removeButtons.forEach((removeButton, index) => {
-      removeButton.addEventListener('click', () => {
-        books.splice(index, 1);
-        localStorage.setItem('books', JSON.stringify(books));
-        removeButton.parentNode.remove();
-      });
-    });
+    deleteBook();
   }
 });

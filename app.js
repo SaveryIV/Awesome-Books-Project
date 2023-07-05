@@ -11,9 +11,10 @@ function Book(title, author) {
 
 function deleteBook() {
   const $removeButtons = document.querySelectorAll('.remove-button');
-  $removeButtons.forEach((removeButton, index) => {
+  $removeButtons.forEach((removeButton) => {
     removeButton.addEventListener('click', () => {
-      books.splice(index, 1);
+      const bookTitle = removeButton.parentNode.querySelector('.book-title').textContent;
+      books = books.filter((book) => book.title !== bookTitle);
       localStorage.setItem('books', JSON.stringify(books));
       removeButton.parentNode.remove();
     });
@@ -26,7 +27,7 @@ function addBook() {
 
   const bookHTML = `
     <div class="card-book">
-      <h3>${book.title}</h3>
+      <h3 class="book-title">${book.title}</h3>
       <h3>${book.author}</h3>
       <button class="remove-button">Remove</button>
       <hr>

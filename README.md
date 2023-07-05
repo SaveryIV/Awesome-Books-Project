@@ -116,6 +116,7 @@ To run the project:
 ## 👥 Authors <a name="authors"></a>
 
 👤 **Agustin Soria Meza**
+👤 **misikir abate teka**
 
 - GitHub: [@SaveryIV](https://github.com/SaveryIV?tab=repositories)
 - LinkedIn: [Agustin Ricardo Soria Meza](https://www.linkedin.com/in/agust%C3%ADn-ricardo-soria-meza-979747228)

@@ -12,20 +12,21 @@ class Books {
 
   initializeRemoveButtons() {
     this.$removeButtons = document.querySelectorAll('.remove-button');
-    this.$removeButtons.forEach((removeButton, index) => {
+    this.$removeButtons.forEach((removeButton) => {
       removeButton.addEventListener('click', () => {
-        this.deleteBook(index);
+        const bookTitle = removeButton.previousElementSibling.querySelector('.book-title').textContent;
+        this.books = this.books.filter((book) => book.title !== bookTitle);
+        localStorage.setItem('books', JSON.stringify(this.books));
         removeButton.parentNode.remove();
       });
     });
   }
 
-  deleteBook(index) {
-    this.books.splice(index, 1);
-    localStorage.setItem('books', JSON.stringify(this.books));
-  }
-
   addBook() {
+    if($titleInput.value === '' || $authorInput.value === ''){
+      $authorInput.value = 'Unknown';
+      $titleInput.value = 'Unknown';
+    }
     const book = {
       title: $titleInput.value,
       author: $authorInput.value,
@@ -34,8 +35,10 @@ class Books {
 
     const bookHTML = `
       <div class="card-book">
-        <h3>${book.title}</h3>
-        <h3>${book.author}</h3>
+        <div class="text-container">
+          <h3 class="book-title">${book.title}</h3> <span>by</span>
+          <h3>${book.author}</h3>
+        </div>
         <button class="remove-button">Remove</button>
         <hr>
       </div>
@@ -43,11 +46,15 @@ class Books {
 
     $cards.insertAdjacentHTML('beforeend', bookHTML);
     localStorage.setItem('books', JSON.stringify(this.books));
-
-    const lastIndex = this.books.length - 1;
+    const element = document.querySelectorAll('.card-book');
+    console.log(element)
+    element.forEach((element, index) => {
+    if (index % 2 === 1) {
+      element.classList.add('alt');
+    }
+    });
     const removeButton = $cards.querySelector('.remove-button:last-child');
     removeButton.addEventListener('click', () => {
-      this.deleteBook(lastIndex);
       removeButton.parentNode.remove();
     });
   }
@@ -56,9 +63,13 @@ class Books {
 const myBooks = new Books();
 
 $addButton.addEventListener('click', () => {
-  myBooks.addBook();
-  $authorInput.value = '';
-  $titleInput.value = '';
+  if($authorInput === "" && $titleInput === ""){
+    
+  }else{
+    myBooks.addBook();
+    $authorInput.value = '';
+    $titleInput.value = '';
+  }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -68,14 +79,22 @@ document.addEventListener('DOMContentLoaded', () => {
     myBooks.books = booksSaved;
     const booksHTML = myBooks.books.map((book) => `
       <div class="card-book">
-        <h3>${book.title}</h3>
-        <h3>${book.author}</h3>
+        <div class="text-container">
+          <h3 class="book-title">${book.title}</h3> <span> by </span>
+          <h3>${book.author}</h3>
+        </div>
         <button class="remove-button">Remove</button>
         <hr>
       </div>
     `).join('');
-
     $cards.innerHTML = booksHTML;
+    const element = document.querySelectorAll('.card-book');
+    console.log(element)
+    element.forEach((element, index) => {
+    if (index % 2 === 1) {
+      element.classList.add('alt');
+    }
+    });
     myBooks.initializeRemoveButtons();
   }
 });

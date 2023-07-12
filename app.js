@@ -2,6 +2,10 @@ const $addButton = document.querySelector('#add');
 const $cards = document.querySelector('.div-remove');
 const $titleInput = document.querySelector('#title');
 const $authorInput = document.querySelector('#author');
+const $listLink = document.querySelector('#list');
+const $contactLink = document.querySelector('#contact');
+const $addLink = document.querySelector('#add-new');
+const $h1 = document.querySelector('#h1');
 
 class Books {
   constructor() {
@@ -80,4 +84,25 @@ $addButton.addEventListener('click', (e) => {
 
 document.addEventListener('DOMContentLoaded', () => {
   myBooks.displayBooks();
+});
+
+$addLink.addEventListener('click',()=>{
+  document.querySelector('.div-remove').classList.add('hide');
+  document.querySelector('.form').classList.remove('hide');
+  document.querySelector('.section-contact-info').classList.add('hide');
+  $h1.textContent='Add a new book';
+});
+
+$listLink.addEventListener('click',()=>{
+  document.querySelector('.div-remove').classList.remove('hide');
+  document.querySelector('.form').classList.add('hide');
+  document.querySelector('.section-contact-info').classList.add('hide');
+  $h1.textContent='All awesome books';  
+});
+
+$contactLink.addEventListener('click',()=>{
+  document.querySelector('.div-remove').classList.add('hide');
+  document.querySelector('.form').classList.add('hide');
+  document.querySelector('.section-contact-info').classList.remove('hide');
+  $h1.textContent='Contact information';
 });

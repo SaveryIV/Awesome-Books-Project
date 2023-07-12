@@ -71,7 +71,7 @@ $addButton.addEventListener('click', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   const booksSaved = JSON.parse(localStorage.getItem('books'));
-  books.push(booksSaved);
+  myBooks.books.push(booksSaved);
 
   if (booksSaved) {
     myBooks.books = booksSaved;

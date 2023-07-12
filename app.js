@@ -23,7 +23,7 @@ class Books {
   }
 
   addBook() {
-    if($titleInput.value === '' || $authorInput.value === ''){
+    if ($titleInput.value === '' || $authorInput.value === '') {
       $authorInput.value = 'Unknown';
       $titleInput.value = 'Unknown';
     }
@@ -47,11 +47,10 @@ class Books {
     $cards.insertAdjacentHTML('beforeend', bookHTML);
     localStorage.setItem('books', JSON.stringify(this.books));
     const element = document.querySelectorAll('.card-book');
-    console.log(element)
     element.forEach((element, index) => {
-    if (index % 2 === 1) {
-      element.classList.add('alt');
-    }
+      if (index % 2 === 1) {
+        element.classList.add('alt');
+      }
     });
     const removeButton = $cards.querySelector('.remove-button:last-child');
     removeButton.addEventListener('click', () => {
@@ -63,9 +62,7 @@ class Books {
 const myBooks = new Books();
 
 $addButton.addEventListener('click', () => {
-  if($authorInput === "" && $titleInput === ""){
-    
-  }else{
+  if ($authorInput !== '' && $titleInput !== '') {
     myBooks.addBook();
     $authorInput.value = '';
     $titleInput.value = '';
@@ -89,11 +86,10 @@ document.addEventListener('DOMContentLoaded', () => {
     `).join('');
     $cards.innerHTML = booksHTML;
     const element = document.querySelectorAll('.card-book');
-    console.log(element)
     element.forEach((element, index) => {
-    if (index % 2 === 1) {
-      element.classList.add('alt');
-    }
+      if (index % 2 === 1) {
+        element.classList.add('alt');
+      }
     });
     myBooks.initializeRemoveButtons();
   }

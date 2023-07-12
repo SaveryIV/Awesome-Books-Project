@@ -2,67 +2,82 @@ const $addButton = document.querySelector('#add');
 const $cards = document.querySelector('.div-remove');
 const $titleInput = document.querySelector('#title');
 const $authorInput = document.querySelector('#author');
-let books = [];
 
-function Book(title, author) {
-  this.title = title;
-  this.author = author;
-}
+class Books {
+  constructor() {
+    this.books = [];
+    this.$removeButtons = null;
+    this.initializeRemoveButtons();
+  }
 
-function deleteBook() {
-  const $removeButtons = document.querySelectorAll('.remove-button');
-  $removeButtons.forEach((removeButton) => {
-    removeButton.addEventListener('click', () => {
-      const bookTitle = removeButton.parentNode.querySelector('.book-title').textContent;
-      books = books.filter((book) => book.title !== bookTitle);
-      localStorage.setItem('books', JSON.stringify(books));
-      removeButton.parentNode.remove();
+  initializeRemoveButtons() {
+    this.$removeButtons = document.querySelectorAll('.remove-button');
+    this.$removeButtons.forEach((removeButton) => {
+      removeButton.addEventListener('click', () => {
+        const bookTitle = removeButton.previousElementSibling.querySelector('.book-title').textContent;
+        const bookAuthor = removeButton.previousElementSibling.querySelector('.book-author').textContent;
+        for (let i = 0; i < this.books.length; i += 1) {
+          if (this.books[i].title === bookTitle && this.books[i].author === bookAuthor) {
+            this.books.splice(i, 1);
+            localStorage.setItem('books', JSON.stringify(this.books));
+            break;
+          }
+        }
+        removeButton.parentNode.remove();
+        this.displayBooks();
+      });
     });
-  });
+  }
+
+  displayBooks() {
+    const booksSaved = JSON.parse(localStorage.getItem('books'));
+    if (booksSaved) {
+      this.books = booksSaved;
+      const booksHTML = this.books.map((book) => `
+        <div class="card-book">
+          <div class="text-container">
+            <h3 class="book-title">${book.title}</h3> <span> by </span>
+            <h3 class="book-author">${book.author}</h3>
+          </div>
+          <button class="remove-button">Remove</button>
+          <hr>
+        </div>
+      `).join('');
+      $cards.innerHTML = booksHTML;
+      const element = document.querySelectorAll('.card-book');
+      element.forEach((element, index) => {
+        if (index % 2 === 1) {
+          element.classList.add('alt');
+        }
+      });
+      this.initializeRemoveButtons();
+    }
+  }
+
+  addBook() {
+    if ($titleInput.value !== '' && $authorInput.value !== '') {
+      const book = {
+        title: $titleInput.value,
+        author: $authorInput.value,
+      };
+      this.books.push(book);
+      localStorage.setItem('books', JSON.stringify(this.books));
+      this.displayBooks();
+    }
+  }
 }
 
-function addBook() {
-  const book = new Book($titleInput.value, $authorInput.value);
-  books.push(book);
+const myBooks = new Books();
 
-  const bookHTML = `
-    <div class="card-book">
-      <h3 class="book-title">${book.title}</h3>
-      <h3>${book.author}</h3>
-      <button class="remove-button">Remove</button>
-      <hr>
-    </div>
-  `;
-
-  $cards.insertAdjacentHTML('beforeend', bookHTML);
-  localStorage.setItem('books', JSON.stringify(books));
-
-  deleteBook();
-}
-
-$addButton.addEventListener('click', () => {
-  addBook();
-  $authorInput.value = '';
-  $titleInput.value = '';
+$addButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  if ($authorInput !== '' && $titleInput !== '') {
+    myBooks.addBook();
+    $authorInput.value = '';
+    $titleInput.value = '';
+  }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const booksSaved = JSON.parse(localStorage.getItem('books'));
-  books.push(booksSaved);
-
-  if (booksSaved) {
-    books = booksSaved;
-    const booksHTML = books.map((book) => `
-      <div class="card-book">
-        <h3 class="book-title">${book.title}</h3>
-        <h3>${book.author}</h3>
-        <button class="remove-button">Remove</button>
-        <hr>
-      </div>
-    `).join('');
-
-    $cards.innerHTML = booksHTML;
-
-    deleteBook();
-  }
+  myBooks.displayBooks();
 });

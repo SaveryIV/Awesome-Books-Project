@@ -1,12 +1,9 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  <!-- You are encouraged to replace this logo with your own! Otherwise you can also remove it. -->
-  <h3><b>First Project week 1 - Module 2</b></h3>
+  <h3><b>Awesome Books, Refactoring using JavaScript classes</b></h3>
 
 </div>
-
-<!-- TABLE OF CONTENTS -->
 
 # 📗 Table of Contents
 
@@ -27,7 +24,7 @@
 
 # 📖 [Portfolio] <a name="about-project"></a>
 
-**[Awesome Books]** is the first project in the Module 2. In this project we are working much more in Javascript and practicing DOM manipulation, how add HTML code dynamically, saving and getting information in the Local Storage between other things. 
+**[Awesome Books - Refactoring using JavaScript classes]** is the second project in the Module 2. In this project we are working much more in Javascript and practicing DOM manipulation, how add HTML code dynamically, saving and getting information in the Local Storage, but using Js classes methodology. 
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -50,14 +47,16 @@
 
 ### Key Features <a name="key-features"></a>
 
+- **[In this project you can a Book class that contain its properties and methods ]**
 - **[In this project you can found dymanic HTML using literal template]**
-- **[Add and remove books lists using an array with objets to save each book]**
+- **[Add and remove books lists using class methods to save each book]**
 - **[Local Storage for saving the data of the books]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
+- [Live Demo Link](https://saveryiv.github.io/Awesome-Books-Project/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -85,13 +84,13 @@ To setup and install this project, follow the below steps:
 - Clone this project by the command:
 
 ```
-$ git clone https://github.com/SaveryIV/Portfolio-Responsive.git
+$ git clone https://github.com/SaveryIV/Awesome-Books-Project.git
 ```
 
 - Then switch to the project folder by the bellow query:
 
 ```
-$ cd Portfolio-Responsive
+$ cd dir
 ```
 
 ### Install
@@ -116,11 +115,9 @@ To run the project:
 ## 👥 Authors <a name="authors"></a>
 
 👤 **Agustin Soria Meza**
-👤 **misikir abate teka**
+👤 **Graciano**
+👤 **Edgah**
 
-- GitHub: [@SaveryIV](https://github.com/SaveryIV?tab=repositories)
-- LinkedIn: [Agustin Ricardo Soria Meza](https://www.linkedin.com/in/agust%C3%ADn-ricardo-soria-meza-979747228)
-- Site: (https://SaveryIV.github.io)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🔭 Future Features <a name="future-features"></a>
@@ -134,12 +131,13 @@ To run the project:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](../../issues/).
+Feel free to check the [issues page](https://github.com/SaveryIV/Awesome-Books-Project/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## ⭐️ Show your support <a name="support"></a>
 
+If you like this project give it a⭐️
 
 If you like this project share it with others you think can help to learn something new
 

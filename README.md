@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  <h3><b>Awesome Books, Refactoring using JavaScript classes</b></h3>
+  <h3><b>Awesome Books: a complete website with navigation</b></h3>
 </div>
 
 # 📗 Table of Contents
@@ -28,7 +28,7 @@
 
 # 📖 [Portfolio] <a name="about-project"></a>
 
-**[Awesome Books - Refactoring using JavaScript classes]** is the second project in the Module 2. In this project we are working much more in Javascript and practicing DOM manipulation, how add HTML code dynamically, saving and getting information in the Local Storage, but using Js classes methodology. 
+**[Awesome Books - a complete website with navigation]** is the third project in the Module 2. In this project we completed the Awesome Books site.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -51,9 +51,10 @@
 
 ### Key Features <a name="key-features"></a>
 
-- **[In this project you can a Book class that contain its properties and methods ]**
+- **[In this project you can a add new Book class that contain its properties and methods ]**
 - **[In this project you can found dymanic HTML using literal template]**
-- **[Add and remove books lists using class methods to save each book]**
+- **[Add,remove and see books lists using class methods to save each book]**
+- **[In this project you can see the contact information]**
 - **[Local Storage for saving the data of the books]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -119,15 +120,14 @@ To run the project:
 ## 👥 Authors <a name="authors"></a>
 
 👤 **Agustin Soria Meza**
-👤 **Graciano**
-👤 **Edgah**
+👤 **Graciano Manuel Henrique**
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🔭 Future Features <a name="future-features"></a>
 
 - [ ] **[New styles with CSS]**
-- [ ] **[Refactoring with new Javascript method]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -149,6 +149,7 @@ If you like this project share it with others you think can help to learn someth
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
+<h2 align="center"><a href="#microverse">Microverse</a></h2>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

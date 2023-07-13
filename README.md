@@ -121,7 +121,7 @@ To run the project:
 
 👤 **Agustin Soria Meza**
 👤 **Graciano Manuel Henrique**
-
+    **Edgah Kipkemoi**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

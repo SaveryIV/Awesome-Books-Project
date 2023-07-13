@@ -6,6 +6,7 @@ const $listLink = document.querySelector('#list');
 const $contactLink = document.querySelector('#contact');
 const $addLink = document.querySelector('#add-new');
 const $h1 = document.querySelector('#h1');
+const $date = document.getElementById('date');
 
 class Books {
   constructor() {
@@ -86,23 +87,37 @@ document.addEventListener('DOMContentLoaded', () => {
   myBooks.displayBooks();
 });
 
-$addLink.addEventListener('click',()=>{
+$addLink.addEventListener('click', () => {
   document.querySelector('.div-remove').classList.add('hide');
   document.querySelector('.form').classList.remove('hide');
   document.querySelector('.section-contact-info').classList.add('hide');
-  $h1.textContent='Add a new book';
+  $h1.textContent = 'Add a new book';
+  $addLink.style.color = 'blue';
+  $listLink.style.color = 'black';
+  $contactLink.style.color = 'black';
 });
 
-$listLink.addEventListener('click',()=>{
+$listLink.addEventListener('click', () => {
   document.querySelector('.div-remove').classList.remove('hide');
   document.querySelector('.form').classList.add('hide');
   document.querySelector('.section-contact-info').classList.add('hide');
-  $h1.textContent='All awesome books';  
+  $h1.textContent = 'All awesome books';
+  $listLink.style.color = 'blue';
+  $addLink.style.color = 'black';
+  $contactLink.style.color = 'black';
 });
 
-$contactLink.addEventListener('click',()=>{
+$contactLink.addEventListener('click', () => {
   document.querySelector('.div-remove').classList.add('hide');
   document.querySelector('.form').classList.add('hide');
   document.querySelector('.section-contact-info').classList.remove('hide');
-  $h1.textContent='Contact information';
+  $h1.textContent = 'Contact information';
+  $contactLink.style.color = 'blue';
+  $addLink.style.color = 'black';
+  $listLink.style.color = 'black';
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const date = new Date();
+  $date.textContent = date;
 });

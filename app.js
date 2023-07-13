@@ -118,6 +118,5 @@ $contactLink.addEventListener('click', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const date = new Date();
-  $date.textContent = date;
+  $date.textContent = new Date();
 });

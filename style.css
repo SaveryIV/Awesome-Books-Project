@@ -19,12 +19,6 @@ header {
   align-items: center;
 }
 
-#date {
-  font-size: small;
-  align-self: flex-end;
-  padding-right: 3vw;
-}
-
 .navbar-container {
   display: flex;
   justify-content: space-between;
@@ -32,6 +26,14 @@ header {
   width: 90vw;
   height: 3rem;
   align-items: center;
+}
+
+#date {
+  font-size: small;
+  align-self: flex-end;
+  padding-right: 3vw;
+  text-align: end;
+  margin-right: 1.5%;
 }
 
 .navbar-container div {

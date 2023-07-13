@@ -70,6 +70,21 @@ class Books {
       this.displayBooks();
     }
   }
+
+  showDate() {
+    const date = new Date();
+    const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      hour12: true,
+    };
+    this.date = date.toLocaleString('en-US', options);
+    return this.date;
+  }
 }
 
 const myBooks = new Books();
@@ -117,6 +132,6 @@ $contactLink.addEventListener('click', () => {
   $listLink.style.color = 'black';
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  $date.textContent = new Date();
-});
+setInterval(() => {
+  $date.textContent = myBooks.showDate();
+}, 1000);

@@ -2,6 +2,11 @@ const $addButton = document.querySelector('#add');
 const $cards = document.querySelector('.div-remove');
 const $titleInput = document.querySelector('#title');
 const $authorInput = document.querySelector('#author');
+const $listLink = document.querySelector('#list');
+const $contactLink = document.querySelector('#contact');
+const $addLink = document.querySelector('#add-new');
+const $h1 = document.querySelector('#h1');
+const $date = document.getElementById('date');
 
 class Books {
   constructor() {
@@ -65,6 +70,21 @@ class Books {
       this.displayBooks();
     }
   }
+
+  showDate() {
+    const date = new Date();
+    const options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      hour12: true,
+    };
+    this.date = date.toLocaleString('en-US', options);
+    return this.date;
+  }
 }
 
 const myBooks = new Books();
@@ -81,3 +101,37 @@ $addButton.addEventListener('click', (e) => {
 document.addEventListener('DOMContentLoaded', () => {
   myBooks.displayBooks();
 });
+
+$addLink.addEventListener('click', () => {
+  document.querySelector('.div-remove').classList.add('hide');
+  document.querySelector('.form').classList.remove('hide');
+  document.querySelector('.section-contact-info').classList.add('hide');
+  $h1.textContent = 'Add a new book';
+  $addLink.style.color = 'blue';
+  $listLink.style.color = 'black';
+  $contactLink.style.color = 'black';
+});
+
+$listLink.addEventListener('click', () => {
+  document.querySelector('.div-remove').classList.remove('hide');
+  document.querySelector('.form').classList.add('hide');
+  document.querySelector('.section-contact-info').classList.add('hide');
+  $h1.textContent = 'All awesome books';
+  $listLink.style.color = 'blue';
+  $addLink.style.color = 'black';
+  $contactLink.style.color = 'black';
+});
+
+$contactLink.addEventListener('click', () => {
+  document.querySelector('.div-remove').classList.add('hide');
+  document.querySelector('.form').classList.add('hide');
+  document.querySelector('.section-contact-info').classList.remove('hide');
+  $h1.textContent = 'Contact information';
+  $contactLink.style.color = 'blue';
+  $addLink.style.color = 'black';
+  $listLink.style.color = 'black';
+});
+
+setInterval(() => {
+  $date.textContent = myBooks.showDate();
+}, 1000);
